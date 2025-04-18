@@ -1,49 +1,5 @@
-from zipfile import ZipFile
-import os
-
-# Re-create project folder structure after kernel reset
-project_name = "StaySafeApp"
-base_path = f"/mnt/data/{project_name}"
-os.makedirs(f"{base_path}/app", exist_ok=True)
-os.makedirs(f"{base_path}/database", exist_ok=True)
-os.makedirs(f"{base_path}/quarantine", exist_ok=True)
-os.makedirs(f"{base_path}/privacy", exist_ok=True)
-os.makedirs(f"{base_path}/realtime_protection", exist_ok=True)
-os.makedirs(f"{base_path}/scheduler", exist_ok=True)
-os.makedirs(f"{base_path}/notifications", exist_ok=True)
-os.makedirs(f"{base_path}/payment", exist_ok=True)
-os.makedirs(f"{base_path}/siem", exist_ok=True)
-os.makedirs(f"{base_path}/static", exist_ok=True)
-os.makedirs(f"{base_path}/templates", exist_ok=True)
-
-# Example minimal files for illustration purposes
-files = {
-    "app/main.py": "# Main Kivy App Launcher",
-    "database/threat_db.py": "# Offline Threat Database",
-    "quarantine/quarantine.py": "# Quarantine Management",
-    "privacy/privacy_assessment.py": "# Privacy Assessment Tools",
-    "realtime_protection/realtime.py": "# Real-Time Protection Logic",
-    "scheduler/scheduler.py": "# Scheduled Scanning",
-    "notifications/alerts.py": "# Notifications on Threat Detection",
-    "payment/paypal_integration.py": "# PayPal Payment Integration via Flask",
-    "siem/siem_integration.py": "# SIEM Integration Logic",
-    "templates/index.html": "<html><body><h1>Welcome to StaySafe</h1></body></html>",
-    "static/style.css": "body { font-family: Arial; }"
-}
-
-# Create the files
-for path, content in files.items():
-    with open(f"{base_path}/{path}", "w") as f:
-        f.write(content)
-
-# Zip the folder for download
-zip_path = f"/mnt/data/{project_name}.zip"
-with ZipFile(zip_path, 'w') as zipf:
-    for root, _, filenames in os.walk(base_path):
-        for filename in filenames:
-            file_path = os.path.join(root, filename)
-            arcname = os.path.relpath(file_path, base_path)
-            zipf.write(file_path, arcname=arcname)
-
-zip_path
-
+git init
+git remote add origin https://github.com/اسم_المستخدم/StaySafeApp.git
+git add .
+git commit -m "النسخة الأولى من Stay Safe App"
+git push -u origin master
